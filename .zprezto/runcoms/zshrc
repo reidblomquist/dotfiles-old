@@ -1,0 +1,150 @@
+#
+# Reid Blomquist's zshrc
+#
+# stuff being used:
+# - zsh
+# - prezto
+# - powerlevel9k
+# - a bunch of other shit
+#
+
+# ruby/rbenv
+eval "$(rbenv init -)"
+
+# The colors Duke, the colors!
+export TERM="xterm-256color"
+## POWERLEVEL9K SETTINGS ##
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%}❯ "
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_VCS_STAGED_ICON="\u00b1"
+POWERLEVEL9K_VCS_UNTRACKED_ICON="\u25CF"
+POWERLEVEL9K_VCS_UNSTAGED_ICON="\u00b1"
+POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON="\u2193"
+POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON="\u2191"
+POWERLEVEL9K_SHOW_CHANGESET="true"
+POWERLEVEL9K_CHANGESET_HASH_LENGTH="12"
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="clear"
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="clear"
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="yellow"
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="yellow"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="clear"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="blue"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="clear"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="blue"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="clear"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="red"
+POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="white"
+POWERLEVEL9K_TODO_BACKGROUND="clear"
+POWERLEVEL9K_TODO_FOREGROUND="green"
+POWERLEVEL9K_OS_ICON_BACKGROUND="clear"
+POWERLEVEL9K_OS_ICON_FOREGROUND="white"
+POWERLEVEL9K_NVM_BACKGROUND="clear"
+POWERLEVEL9K_NVM_FOREGROUND="green"
+POWERLEVEL9K_NODE_VERSION_BACKGROUND="clear"
+POWERLEVEL9K_NODE_VERSION_FOREGROUND="green"
+POWERLEVEL9K_HISTORY_BACKGROUND="clear"
+POWERLEVEL9K_HISTORY_FOREGROUND="blue"
+POWERLEVEL9K_STATUS_OK_BACKGROUND="clear"
+POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
+POWERLEVEL9K_STATUS_ERROR_BACKGROUND="clear"
+POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
+POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="clear"
+POWERLEVEL9K_LOAD_WARNING_BACKGROUND="clear"
+POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="clear"
+POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND="red"
+POWERLEVEL9K_LOAD_WARNING_FOREGROUND="yellow"
+POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="green"
+POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
+POWERLEVEL9K_LOAD_WARNING_VISUAL_IDENTIFIER_COLOR="yellow"
+POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_COLOR="green"
+POWERLEVEL9K_RAM_BACKGROUND="clear"
+POWERLEVEL9K_RAM_FOREGROUND="green"
+POWERLEVEL9K_RAM_ELEMENTS="ram_free"
+POWERLEVEL9K_TIME_BACKGROUND="clear"
+POWERLEVEL9K_TIME_FOREGROUND="white"
+POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d.%m.%y}"
+POWERLEVEL9K_STATUS_VERBOSE="true"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="clear"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="white"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('status' 'root_indicator' 'os_icon' 'node_version' 'dir' 'vcs')
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('load' 'ram' 'time')
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Set locale
+export LC_ALL="en_US.UTF-8"
+
+# make sure NVM_DIR set before sourcing nvm sh
+# or bad times
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+export DEV_ROOT=~/Development
+
+# go stuff
+export GOPATH=$DEV_ROOT
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# vim
+alias vim="mvim -v"
+alias vi="vim"
+
+# set global editor/visual
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+# general dev
+alias d="cd $DEV_ROOT"
+alias ..="cd .."
+alias reup="git pull && rm -rf node_modules && npm i && npm run dev"
+
+# test reports
+alias crreport="open -a Google\ Chrome $DEV_ROOT/node/checkin-routes/reports/coverage/PhantomJS\ 2.1.1\ (Mac OS X 0.0.0)/index.html"
+alias vreport="open -a Google\ Chrome $DEV_ROOT/node/valet/reports/coverage/PhantomJS\ 2.1.1\ (Mac OS X 0.0.0)/index.html"
+alias oreport="open -a Google\ Chrome $DEV_ROOT/node/outfielder/reports/coverage/PhantomJS\ 2.1.1\ (Mac OS X 0.0.0)/index.html"
+alias 42report="open -a Google\ Chrome $DEV_ROOT/node/area-42/reports/coverage/PhantomJS\ 2.1.1\ (Mac OS X 0.0.0)/index.html"
+
+# port forwarding
+alias fwd="sudo pfctl -ef /etc/pf-innovation.conf"
+alias sfwd="sudo pfctl -df /etc/pf-innovation.conf"
+
+# node/npm junk
+alias yrd="yarn run dev"
+alias nrd="npm run dev"
+alias nrt="npm t"
+alias nvp="npm version patch"
+
+# yarn junk
+alias yrd="yarn run dev"
+
+# patching/pushing
+alias vbump="nvp && git push && git push --tags"
+
+# docker
+alias dkrc="docker-compose"
+alias dkr="docker"
+alias flushvolumes="docker volume rm \$(docker volume ls -q)"
+alias flushcontainers="docker rm \$(docker ps -a -q)"
+alias flushimages="docker rmi \$(docker images -q) -f"
+alias flushdocker="flushcontainers && flushimages && flushvolumes"
+
+# zookeeper docker scratchpad
+alias zktup="docker run --name zktest --restart always -d zookeeper"
+alias zktstart="docker start zktest"
+alias zktstop="docker kill zktest"
+alias zktCli="docker run -it --rm --link zktest:zookeeper zookeeper zkCli.sh -server zookeeper"
+
+# percent encode/decode py 1liners
+alias urldecode='python -c "import sys, urllib as ul; \
+    print ul.unquote_plus(sys.argv[1])"'
+
+alias urlencode='python -c "import sys, urllib as ul; \
+    print ul.quote_plus(sys.argv[1])"'

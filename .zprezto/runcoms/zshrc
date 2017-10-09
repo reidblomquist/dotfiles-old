@@ -17,7 +17,7 @@ export TERM="xterm-256color"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%{%F{249}%}\u250f"
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%}❯ "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%F{249}%}\u2517%{%F{default}%}❯ "
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_VCS_STAGED_ICON="\u00b1"
@@ -94,8 +94,8 @@ export GOPATH=$DEV_ROOT
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # vim
-alias vim="mvim -v"
-alias vi="vim"
+# alias vim="mvim -v"
+# alias vi="vim"
 
 # set global editor/visual
 export VISUAL=vim
@@ -113,11 +113,12 @@ alias oreport="open -a Google\ Chrome $DEV_ROOT/node/outfielder/reports/coverage
 alias 42report="open -a Google\ Chrome $DEV_ROOT/node/area-42/reports/coverage/PhantomJS\ 2.1.1\ (Mac OS X 0.0.0)/index.html"
 
 # port forwarding
-alias fwd="sudo pfctl -ef /etc/pf-innovation.conf"
+alias fwd="sudo pfctl -ef /etc/pf-nda-fwd.conf"
 alias sfwd="sudo pfctl -df /etc/pf-innovation.conf"
 
 # node/npm junk
-alias yrd="yarn run dev"
+alias yd="yarn dev"
+alias yi="yarn install --frozen-lockfile"
 alias nrd="npm run dev"
 alias nrt="npm t"
 alias nvp="npm version patch"

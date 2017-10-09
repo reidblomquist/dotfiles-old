@@ -6,6 +6,9 @@ set cursorline           " Always show cursor line
 set novisualbell         " I don't mind beeping
 set guicursor=a:blinkon0 " cursor setting
 
+set macligatures         " enable support for ligatures
+set guifont=Hasklug\ Nerd\ Font\ Complete\ Mono:h11 " enable nerd font
+
 set cmdheight=2          " Two spaces for feedback down below
 
 set wildmenu              " make tab completion for files/buffers act like bash
